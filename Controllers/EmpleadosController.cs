@@ -98,7 +98,7 @@ namespace EmployerSection.Controllers
         public  IActionResult Create(Empleado empleado){
              _context.Empleados.Add(empleado);
              _context.SaveChanges();
-             return RedirectToAction("Index");
+             return RedirectToAction("EmpleadosList");
         }
 
 
