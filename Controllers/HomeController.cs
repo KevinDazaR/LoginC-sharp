@@ -11,10 +11,14 @@ public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
 
-    public HomeController(ILogger<HomeController> logger)
+    public readonly BaseContext _context;
+
+    public HomeController(ILogger<HomeController> logger, BaseContext context)
     {
         _logger = logger;
+        _context = context;
     }
+
 
     public IActionResult Index()
     {
@@ -34,12 +38,9 @@ public class HomeController : Controller
 
     // ME
 
-    public readonly BaseContext _context;
+    
 
-    public HomeController(BaseContext context)
-    {
-        _context = context;
-    }
+
 
     // INICIO DE SESIÓN
         
@@ -54,7 +55,7 @@ public class HomeController : Controller
         }
         else
         {
-            return RedirectToAction("Index");
+            return RedirectToAction("/Empleados/Index");
         }
         
     }

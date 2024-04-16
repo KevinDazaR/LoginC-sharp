@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/riwip5-007/Downloads/KevinDazaR/EmpleadoLogin/EmployerSection.csproj": {}
+    "/Users/kevindazar/Documents/Coding/LoginC#/LoginC-sharp/EmployerSection.csproj": {}
   },
   "projects": {
-    "/home/riwip5-007/Downloads/KevinDazaR/EmpleadoLogin/EmployerSection.csproj": {
+    "/Users/kevindazar/Documents/Coding/LoginC#/LoginC-sharp/EmployerSection.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/riwip5-007/Downloads/KevinDazaR/EmpleadoLogin/EmployerSection.csproj",
+        "projectUniqueName": "/Users/kevindazar/Documents/Coding/LoginC#/LoginC-sharp/EmployerSection.csproj",
         "projectName": "EmployerSection",
-        "projectPath": "/home/riwip5-007/Downloads/KevinDazaR/EmpleadoLogin/EmployerSection.csproj",
-        "packagesPath": "/home/riwip5-007/.nuget/packages/",
-        "outputPath": "/home/riwip5-007/Downloads/KevinDazaR/EmpleadoLogin/obj/",
+        "projectPath": "/Users/kevindazar/Documents/Coding/LoginC#/LoginC-sharp/EmployerSection.csproj",
+        "packagesPath": "/Users/kevindazar/.nuget/packages/",
+        "outputPath": "/Users/kevindazar/Documents/Coding/LoginC#/LoginC-sharp/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/riwip5-007/.nuget/NuGet/NuGet.Config"
+          "/Users/kevindazar/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -32,6 +32,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -66,7 +71,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.103/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.201/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
