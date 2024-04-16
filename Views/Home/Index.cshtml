@@ -1,4 +1,5 @@
-﻿@{
+﻿
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -20,35 +21,42 @@
 					<div class="panel-body">
 						<div class="row">
 							<div class="col-lg-12">
-								<form id="login-form" action="@Url.Action("Login", "Home")" method="post" role="form" style="display: block;">
-									<div class="form-group">
-										<input type="text" name="Correo" id="Correo" tabindex="1" class="form-control" placeholder="Correo electrónico" value="">
-									</div>
-									<div class="form-group">
-										<input type="password" name="Contraseña" id="Contraseña" tabindex="2" class="form-control mt-3" placeholder="Contraseña">
-									</div>
-									<div class="form-group text-center mt-2">
-										<input type="checkbox" tabindex="3" class="" name="remember" id="remember">
-										<label for="remember"> Recordarme</label>
-									</div>
-									<div class="form-group">
-										<div class="row">
-											<div class="col-sm-offset-3">
-												<button type="submit" tabindex="4" class="form-control btn btn-login mt-3 mb-3">Iniciar sesión</button>
-											</div>
+								@* @if (@Model != null)
+								{ *@
+									<form id="login-form" action="@Url.Action("Login", "Home")" method="post" role="form" style="display: block;">
+										<div class="form-group">
+											<input type="text" name="Correo" id="Correo" tabindex="1" class="form-control" placeholder="Correo electrónico" value="">
 										</div>
-									</div>
-
-									<div class="form-group">
-										<div class="row">
-											<div class="col-lg-12">
-												<div class="text-center mb-3">
-													<a tabindex="5" class="forgot-password">¿Has olvidado tu contraseña?</a>
+										<div class="form-group">
+											<input type="password" name="Contraseña" id="Contraseña" tabindex="2" class="form-control mt-3" placeholder="Contraseña">
+										</div>
+										<div class="form-group text-center mt-2">
+											<input type="checkbox" tabindex="3" class="" name="remember" id="remember">
+											<label for="remember"> Recordarme</label>
+										</div>
+										<div class="form-group">
+											<div class="row">
+												<div class="col-sm-offset-3">
+													<button type="submit" tabindex="4" class="form-control btn btn-login mt-3 mb-3">Iniciar sesión</button>
 												</div>
 											</div>
 										</div>
-									</div>
-								</form>
+
+										<div class="form-group">
+											<div class="row">
+												<div class="col-lg-12">
+													<div class="text-center mb-3">
+														<a tabindex="5" class="forgot-password">¿Has olvidado tu contraseña?</a>
+													</div>
+												</div>
+											</div>
+										</div>
+									</form>
+								@* }
+								else
+								{
+									<p>El modelo o el ID son nulos.</p>
+								} *@
 
 								<form id="register-form" action="http://phpoll.com/register/process" method="post" role="form" style="display: none;">
 									<div class="form-group">

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "mhP4vUHgZsUTS1zftEa6Fcc37Gym7j+5jPQmdg/zRDFYZ2DoJ8JUTd2MmVUWfsEtP4f/g+iTwqVy5/Zmqcs0bg==",
+  "dgSpecHash": "uUpSrVKZLvHLIt53ebp6Ti8RX1AUjaFL+D+y4GAkl2VwLQ3shFoB2d+lzqcYZM+C/Q9Wz4gWyOyjBbY+HBojDQ==",
   "success": true,
-  "projectFilePath": "/Users/kevindazar/Documents/Coding/LoginC#/LoginC-sharp/EmployerSection.csproj",
+  "projectFilePath": "/Users/kevindazar/Documents/Coding/LoginC#/EmpleadoLogin/EmployerSection.csproj",
   "expectedPackageFiles": [
     "/Users/kevindazar/.nuget/packages/microsoft.entityframeworkcore/8.0.4/microsoft.entityframeworkcore.8.0.4.nupkg.sha512",
     "/Users/kevindazar/.nuget/packages/microsoft.entityframeworkcore.abstractions/8.0.4/microsoft.entityframeworkcore.abstractions.8.0.4.nupkg.sha512",

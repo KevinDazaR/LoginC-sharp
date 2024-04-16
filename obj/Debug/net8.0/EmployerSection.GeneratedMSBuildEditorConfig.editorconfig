@@ -9,47 +9,59 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = EmployerSection
 build_property.RootNamespace = EmployerSection
-build_property.ProjectDir = /Users/kevindazar/Documents/Coding/LoginC#/LoginC-sharp/
+build_property.ProjectDir = /Users/kevindazar/Documents/Coding/LoginC#/EmpleadoLogin/
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = /Users/kevindazar/Documents/Coding/LoginC#/LoginC-sharp
+build_property.MSBuildProjectDirectory = /Users/kevindazar/Documents/Coding/LoginC#/EmpleadoLogin
 build_property._RazorSourceGeneratorDebug = 
 
-[/Users/kevindazar/Documents/Coding/LoginC\#/LoginC-sharp/Views/Empleados/EmpleadosList.cshtml]
+[/Users/kevindazar/Documents/Coding/LoginC\#/EmpleadoLogin/Views/Empleados/Crear.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRW1wbGVhZG9zL0NyZWFyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/kevindazar/Documents/Coding/LoginC\#/EmpleadoLogin/Views/Empleados/EmpleadosList.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRW1wbGVhZG9zL0VtcGxlYWRvc0xpc3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/kevindazar/Documents/Coding/LoginC\#/LoginC-sharp/Views/Empleados/Index.cshtml]
+[/Users/kevindazar/Documents/Coding/LoginC\#/EmpleadoLogin/Views/Empleados/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRW1wbGVhZG9zL0luZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/kevindazar/Documents/Coding/LoginC\#/LoginC-sharp/Views/Home/Index.cshtml]
+[/Users/kevindazar/Documents/Coding/LoginC\#/EmpleadoLogin/Views/Empleados/Ingreso.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRW1wbGVhZG9zL0luZ3Jlc28uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/kevindazar/Documents/Coding/LoginC\#/EmpleadoLogin/Views/Empleados/Salida.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRW1wbGVhZG9zL1NhbGlkYS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/kevindazar/Documents/Coding/LoginC\#/EmpleadoLogin/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9JbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/kevindazar/Documents/Coding/LoginC\#/LoginC-sharp/Views/Home/Privacy.cshtml]
+[/Users/kevindazar/Documents/Coding/LoginC\#/EmpleadoLogin/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Qcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/kevindazar/Documents/Coding/LoginC\#/LoginC-sharp/Views/Shared/Error.cshtml]
+[/Users/kevindazar/Documents/Coding/LoginC\#/EmpleadoLogin/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0Vycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/kevindazar/Documents/Coding/LoginC\#/LoginC-sharp/Views/Shared/_ValidationScriptsPartial.cshtml]
+[/Users/kevindazar/Documents/Coding/LoginC\#/EmpleadoLogin/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/kevindazar/Documents/Coding/LoginC\#/LoginC-sharp/Views/_ViewImports.cshtml]
+[/Users/kevindazar/Documents/Coding/LoginC\#/EmpleadoLogin/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/kevindazar/Documents/Coding/LoginC\#/LoginC-sharp/Views/_ViewStart.cshtml]
+[/Users/kevindazar/Documents/Coding/LoginC\#/EmpleadoLogin/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/kevindazar/Documents/Coding/LoginC\#/LoginC-sharp/Views/Shared/_Layout.cshtml]
+[/Users/kevindazar/Documents/Coding/LoginC\#/EmpleadoLogin/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-dw1xuf8i2d

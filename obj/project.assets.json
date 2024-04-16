@@ -724,11 +724,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/kevindazar/Documents/Coding/LoginC#/LoginC-sharp/EmployerSection.csproj",
+      "projectUniqueName": "/Users/kevindazar/Documents/Coding/LoginC#/EmpleadoLogin/EmployerSection.csproj",
       "projectName": "EmployerSection",
-      "projectPath": "/Users/kevindazar/Documents/Coding/LoginC#/LoginC-sharp/EmployerSection.csproj",
+      "projectPath": "/Users/kevindazar/Documents/Coding/LoginC#/EmpleadoLogin/EmployerSection.csproj",
       "packagesPath": "/Users/kevindazar/.nuget/packages/",
-      "outputPath": "/Users/kevindazar/Documents/Coding/LoginC#/LoginC-sharp/obj/",
+      "outputPath": "/Users/kevindazar/Documents/Coding/LoginC#/EmpleadoLogin/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/kevindazar/.nuget/NuGet/NuGet.Config"

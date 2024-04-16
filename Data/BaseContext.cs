@@ -9,6 +9,6 @@ namespace EmpleadoLogin.Data
             : base(options)
         {
         }
-        public DbSet<Empleado> Empleados { get; set; }
+        public DbSet<Empleado>Empleados { get; set; }
     }
 }

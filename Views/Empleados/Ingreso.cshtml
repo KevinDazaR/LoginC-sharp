@@ -1,0 +1,15 @@
+@{
+    ViewData["Title"] = "Ingreso";
+}
+
+
+<div class="row">
+    <div class="col-md-10">    
+        <form asp-action="IngresoHora" asp-route-id="@Model.Id" method="post">
+            <p>Hola ... ,¿estás seguro de registrar la hora de entrada?</p>
+            <button type="submit" class="btn btn-success">Confirmar</button>
+            <a asp-action="Index" class="btn btn-danger">Cancelar</a>
+        </form>
+    </div
+</div>
+

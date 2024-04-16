@@ -38,24 +38,22 @@ public class HomeController : Controller
 
     // ME
 
-    
-
 
 
     // INICIO DE SESIÓN
         
-    public async Task<IActionResult> Login(string Correo, string Contraseña)
+    public async Task<IActionResult> Login(string Correo, string Contraseña, int? id)
     {
         var empleado = await _context.Empleados.FirstOrDefaultAsync(m => m.Correo == Correo && m.Contraseña == Contraseña);
 
         if(empleado != null)
         {
-            return RedirectToAction("EmpleadosList", "Empleados");
+           return RedirectToAction("Index", "Empleados", new { id = id });
 
         }
         else
         {
-            return RedirectToAction("/Empleados/Index");
+            return View();
         }
         
     }
