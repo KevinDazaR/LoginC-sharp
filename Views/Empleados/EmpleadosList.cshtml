@@ -1,0 +1,40 @@
+
+@{
+    ViewData["Title"] = "Historial Empleados";
+}
+
+
+<div class="container">
+    <a class="btn btn-success mb-4" asp-controller="EmpleadosController" asp-action="AgregarEmpleado">Registrar un nuevo empleado</a>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-striped table-hover text-center">
+                <thead class="thead-dark">
+                    <tr class="thead thead-dark">
+                        <th class="border">Nombres</th >
+                        <th class="border">Apellidos</th >
+                        <th class="border">Correo</th >
+                        <th class="border">Hora_Entrada</th >
+                        <th class="border">Hora_Salida</th >
+                        <th class="border">Estado</th >
+                        <th class="border">Acción</th>
+                    </tr>
+                </thead>
+            @foreach(var empleado in Model)
+            {
+                    <tr>
+                        <td class="border">@empleado.Nombres</td>
+                        <td class="border">@empleado.Apellidos</td>
+                        <td class="border">@empleado.Correo</td>
+                        <td class="border">@empleado.Hora_Entrada</td>
+                        <td class="border">@empleado.Hora_Salida</td>
+                        <td class="border">@empleado.Estado</td>
+                        <td class="border">
+                            <a class="btn btn-danger" asp-controller="EmpleadosController" asp-action="EliminarEmpleado">Eliminar</a>
+                        </td>
+                    </tr>
+            }
+            </table>
+        </div>
+    </div>
+</div>
