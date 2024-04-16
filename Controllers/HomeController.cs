@@ -2,10 +2,9 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using EmployerSection.Models;
 using Microsoft.EntityFrameworkCore;
-using EmpleadoLogin.Models;
-using EmpleadoLogin.Data;
+using EmployerSection.Data;
 
-namespace EmpleadoLogin.Controllers;
+namespace EmployerSection.Controllers;
 
 public class HomeController : Controller
 {
@@ -42,13 +41,13 @@ public class HomeController : Controller
 
     // INICIO DE SESIÓN
         
-    public async Task<IActionResult> Login(string Correo, string Contraseña, int? id)
+    public async Task<IActionResult> Login(string Correo, string Contraseña)
     {
         var empleado = await _context.Empleados.FirstOrDefaultAsync(m => m.Correo == Correo && m.Contraseña == Contraseña);
 
         if(empleado != null)
         {
-           return RedirectToAction("Index", "Empleados", new { id = id });
+           return RedirectToAction("Index", "Empleados");
 
         }
         else

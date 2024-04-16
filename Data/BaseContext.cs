@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using EmpleadoLogin.Models;
+using EmployerSection.Models;
 
-namespace EmpleadoLogin.Data
+namespace EmployerSection.Data
 {
     public class BaseContext : DbContext
     {
@@ -9,6 +9,6 @@ namespace EmpleadoLogin.Data
             : base(options)
         {
         }
-        public DbSet<Empleado>Empleados { get; set; }
+        public DbSet<Empleado> Empleados { get; set; }
     }
 }

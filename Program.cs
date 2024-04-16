@@ -1,4 +1,4 @@
-using EmpleadoLogin.Data;
+using EmployerSection.Data;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

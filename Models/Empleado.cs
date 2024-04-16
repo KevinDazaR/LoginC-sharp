@@ -1,4 +1,4 @@
-namespace EmpleadoLogin.Models
+namespace EmployerSection.Models
 {
     public class Empleado
     {

@@ -1,10 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
+using EmployerSection.Models;
 using Microsoft.EntityFrameworkCore;
-using EmpleadoLogin.Data;
-using EmpleadoLogin.Models;
+using EmployerSection.Data;
 
-
-namespace EmpleadoLogin.Controllers
+namespace EmployerSection.Controllers
 {
     public class EmpleadosController : Controller
     {
@@ -89,7 +88,7 @@ namespace EmpleadoLogin.Controllers
             var empleado = await _context.Empleados.FindAsync(id);
             _context.Empleados.Remove(empleado); 
             await _context.SaveChangesAsync(); 
-            return RedirectToAction("Index"); 
+            return RedirectToAction("EmpleadosList"); 
         }
 
         public IActionResult Create(){
