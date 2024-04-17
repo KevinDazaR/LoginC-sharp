@@ -1,4 +1,6 @@
-﻿@{
+﻿@model Empleado
+
+@{
 
     ViewData["Title"] = "Home Page";
 }
@@ -28,7 +30,7 @@
 										 <!-- Campo oculto para enviar el Id -->
 									
 										<div class="form-group">
-											<input type="text" name="Correo" id="Correo" tabindex="1" class="form-control" placeholder="Correo electrónico" value="">
+											<input type="email" name="Correo" id="Correo" tabindex="1" class="form-control" placeholder="Correo electrónico" value="">
 										</div>
 										<div class="form-group">
 											<input type="password" name="Contraseña" id="Contraseña" tabindex="2" class="form-control mt-3" placeholder="Contraseña">
@@ -61,27 +63,45 @@
 									<p>El modelo o el ID son nulos.</p>
 								} *@
 
-								<form id="register-form" action="http://phpoll.com/register/process" method="post" role="form" style="display: none;">
+								<form class="register-form" asp-controller="Empleados" asp-action="Create" method="post" style="display: none;">
 									<div class="form-group">
-										<input type="text" name="username" id="username" tabindex="1" class="form-control mt-2" placeholder="Usuario" value="">
+										<label for="exampleInputEmail1">Nombres</label>
+										<input type="text" asp-for="Nombres"  class="form-control" placeholder="Ingrese sus nombres">
 									</div>
+
 									<div class="form-group">
-										<input type="email" name="email" id="email" tabindex="1" class="form-control mt-2" placeholder="Correo electronico" value="">
+										<label for="exampleInputPassword1">Apellidos</label>
+										<input type="text" asp-for="Apellidos" class="form-control" placeholder="Ingrese sus apellidos">
 									</div>
+
 									<div class="form-group">
-										<input type="password" name="password" id="password" tabindex="2" class="form-control mt-2" placeholder="Contraseña">
+										<label for="exampleInputPassword1">Correo electronico</label>
+										<input type="email" asp-for="Correo" class="form-control" placeholder="Ingrese el correo electrònico">
 									</div>
+
 									<div class="form-group">
-										<input type="password" name="confirm-password" id="confirm-password" tabindex="2" class="form-control mt-2" placeholder="Confirmar contraseña">
+										<label for="exampleInputPassword1">Contraseña</label>
+										<input type="password" asp-for="Contraseña" class="form-control" placeholder="Ingrese su contraseña">
 									</div>
+
+									<div hidden class="form-group">
+										<label  for="exampleInputPassword1">Estado</label>
+										<select asp-for="Estado">
+											<option selected value="Online">Online</option>
+											<option value="Offline">Offline</option>
+										</select>
+									</div> 
+
 									<div class="form-group">
 										<div class="row">
 											<div class="col-sm-offset-3">
-												<input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control mt-2 btn btn-register" value="Crear cuenta">
+												<buton name="register-submit" id="register-submit" tabindex="4" class="form-control  mt-2 btn btn-register"> Crear cuenta </buton>
 											</div>
 										</div>
 									</div>
 								</form>
+
+
 							</div>
 						</div>
 					</div>

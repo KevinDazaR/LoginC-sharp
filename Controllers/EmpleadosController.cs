@@ -56,29 +56,29 @@ namespace EmployerSection.Controllers
             return View();
         }
 
-       public IActionResult IngresoHora(int? id)
+      public IActionResult IngresoHora()
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
             // Buscar al empleado en la base de datos
-            var empleado = _context.Empleados.Find(id);
+            var correo = HttpContext.Session.GetString("Correo");
+            var usuarioLogeado = _context.Empleados.FirstOrDefault(m => m.Correo == correo);
 
-            if (empleado == null)
+            if (usuarioLogeado != null)
             {
-                return NotFound();
+                // Actualizar la hora de entrada del empleado
+                usuarioLogeado.Hora_Entrada = DateTime.Now;
+                
+                // Guardar los cambios en la base de datos
+                _context.SaveChanges();
+                
+                // Actualizar la sesión con la nueva hora de entrada solo si los cambios se guardaron correctamente
+                HttpContext.Session.SetString("HoraEntrada", usuarioLogeado.Hora_Entrada.ToString());
+                
+                ViewBag.HoraEntrada = HttpContext.Session.GetString("HoraEntrada"); 
             }
-
-            // Actualizar la hora de entrada del empleado
-            empleado.Hora_Entrada = DateTime.Now;
-            
-            // Guardar los cambios en la base de datos
-            _context.SaveChanges();
 
             return RedirectToAction("Index"); // Redirigir a donde sea necesario después de registrar la hora de entrada
         }
+
 
          public async Task<IActionResult> Salida()
         {
