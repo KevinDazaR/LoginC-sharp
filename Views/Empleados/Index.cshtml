@@ -4,24 +4,26 @@
 
 
 <div class="container">
-
     <div class="row">
+
+        <p>Bienvenido @ViewBag.Nombre </p>
+
         <div class="col-md-10 text-align-center border p-5">
             <form action="">
                 <h2 class="text-center"> <b>Datos del empleado: </b></h2>
                 <div class="form-group">
                     <label for="Nombres">Nombres</label>
-                    <input disabled type="text" class="form-control" value=""> 
+                    <input disabled type="text" class="form-control" @*value="@Model.Nombres"*@ > 
                     </div>
 
                 <div class="form-group">
                     <label for="Apellidos">Apellidos</label>
-                    <input disabled type="text" class="form-control">
+                    <input disabled type="text" class="form-control" @*value="@Model.Apellidos"*@>
                 </div>
 
                 <div class="form-group">
                     <label for="Correo">Correo electronico</label>
-                    <input disabled type="email" class="form-control">
+                    <input disabled type="email" class="form-control" @*value="@Model.Correo"*@>
                 </div>
 
                 <hr>

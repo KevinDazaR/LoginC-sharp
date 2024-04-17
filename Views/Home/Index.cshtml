@@ -1,8 +1,8 @@
-﻿@model Empleado;
+﻿@{
 
-@{
     ViewData["Title"] = "Home Page";
 }
+
 
 <div class="container">
     	<div class="row justify-content-center align-items-center">
@@ -25,7 +25,8 @@
 								@* @if (@Model != null)
 								{ *@
 									<form id="login-form" action="@Url.Action("Login", "Home")" method="post" role="form" style="display: block;">
-										@* <input type="hidden" name="userId" value="@Model.Id"> *@
+										 <!-- Campo oculto para enviar el Id -->
+									
 										<div class="form-group">
 											<input type="text" name="Correo" id="Correo" tabindex="1" class="form-control" placeholder="Correo electrónico" value="">
 										</div>

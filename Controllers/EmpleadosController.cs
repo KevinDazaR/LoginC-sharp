@@ -27,10 +27,10 @@ namespace EmployerSection.Controllers
         //     return View(await _context.Empleados.FirstOrDefault(m => m.Id == id));
         // }
 
-        public IActionResult Index(int? id)
+        public IActionResult Index()
         {
-            var empleado = _context.Empleados.FirstOrDefault(m => m.Id == id);
-            return View(empleado);
+            ViewBag.Nombre = HttpContext.Session.GetString("Nombre"); // Variable de session para la vista
+            return View();
         }
 
 

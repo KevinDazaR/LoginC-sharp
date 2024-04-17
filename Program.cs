@@ -10,6 +10,14 @@ builder.Services.AddDbContext<BaseContext>(options =>
                             builder.Configuration.GetConnectionString("MySqlConnection"),
                             Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.20-mysql")));
 
+
+//configuraciòn del servicio para la sesiòn
+builder.Services.AddSession(options => {
+            options.IdleTimeout = TimeSpan.FromMinutes(10); //Duraciòn de la session logeada
+            options.Cookie.HttpOnly = true;
+            options.Cookie.IsEssential = true;
+            });
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -26,6 +34,14 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
+
+//ME
+// DEBE DE ESTAR ANTES DEL MAPCONTROLLER Y DESPUÈS DEL ROUTING Y USEAUTHORIZATION
+//Middleware para la session
+app.UseSession();
+
+
 
 app.MapControllerRoute(
     name: "default",
