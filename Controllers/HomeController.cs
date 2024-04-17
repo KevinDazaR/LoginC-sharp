@@ -42,7 +42,12 @@ namespace EmployerSection.Controllers
         {
             var usuarioLogeado = await _context.Empleados.FirstOrDefaultAsync(m => m.Correo == Correo && m.Contraseña == Contraseña);
 
-            if (usuarioLogeado != null)
+            if(usuarioLogeado != null)
+            {
+                
+            }
+
+            if ( usuarioLogeado.Estado =="Online" )
             {
                 // Establecer el valor de una variable de sesión
        
@@ -51,12 +56,22 @@ namespace EmployerSection.Controllers
                 HttpContext.Session.SetString("Correo", usuarioLogeado.Correo);
                 HttpContext.Session.SetString("HoraEntrada", usuarioLogeado.Hora_Entrada.ToString());
                 HttpContext.Session.SetString("HoraSalida", usuarioLogeado.Hora_Salida.ToString());
-
+                HttpContext.Session.SetString("Estado", usuarioLogeado.Estado);
+            
+                usuarioLogeado.Estado = "Online";
+                await _context.SaveChangesAsync();
 
                 // Obtener el valor de una variable de sesión
                 // var sessionId = HttpContext.Session.GetString("ID");
 
-                return RedirectToAction("Index", "Empleados");
+                if(usuarioLogeado.Estado == "Online")
+                {
+                    return RedirectToAction("Index", "Empleados");
+                }
+                else 
+                {
+                    return RedirectToAction("Index");
+                }
             }
             else
             {

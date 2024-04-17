@@ -2,11 +2,25 @@
     ViewData["Title"] = "Logged";
 }
 
+<header>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3 text-center justify-content-around">
+        <a class="nav-link text-info font-weight-bold" asp-area="" asp-controller="Empleados" asp-action="Index">Mi perfil</a>
+        <span>|</span>
+        <a class="nav-link text-warning" asp-area="" asp-controller="Empleados" asp-action="EmpleadosList">Historial de conexiòn</a>
+        <span>|</span>
+        <a class="nav-link text-danger" asp-area="" asp-controller="Empleados" asp-action="CerrarSession">Cerrar sesiòn</a>
+            
+    </nav>
+</header>
+
+
 
 <div class="container">
     <div class="row d-flex jusitfy-content-around">
 
         <h3>Bienvenido</h3>
+
+        <b>Estado: @ViewBag.Estado</b>
 
         <div class="col-md-5 text-align-center border p-5">
             <form action="">

@@ -14,19 +14,6 @@ namespace EmployerSection.Controllers
             _context = context;
         }
         
-
-
-        // public IActionResult Index()
-        // {
-        //     return View();
-        // }
-
-            // ME LANZÒ ERROR PORQUE ERA ASYNC
-        // public async Task<IActionResult> Index(int? id)
-        // {
-        //     return View(await _context.Empleados.FirstOrDefault(m => m.Id == id));
-        // }
-
         public IActionResult Index()
         {
             ViewBag.Nombre = HttpContext.Session.GetString("Nombre"); // Variable de session para la vista
@@ -35,6 +22,8 @@ namespace EmployerSection.Controllers
 
             ViewBag.HoraEntrada = HttpContext.Session.GetString("HoraEntrada"); 
             ViewBag.HoraSalida = HttpContext.Session.GetString("HoraSalida"); 
+
+            ViewBag.Estado = HttpContext.Session.GetString("Estado");
             return View();
         }
 
@@ -47,16 +36,8 @@ namespace EmployerSection.Controllers
 
         // SISTEMA DE INGRESO DE JORNADA LABORAL
 
-        // public async Task<IActionResult> Ingreso(int? id)
-        // {
-        //     var empleado = await _context.Empleados.FirstOrDefaultAsync(m => m.Id == id);
-        //     return View(empleado);
-        // }
-
          public async Task<IActionResult> Ingreso()
         {
-
-
             return View();
         }
 
@@ -132,6 +113,24 @@ namespace EmployerSection.Controllers
              _context.SaveChanges();
              return RedirectToAction("EmpleadosList");
         }
+
+       public async Task<IActionResult> CerrarSession()
+        {
+            var correo = HttpContext.Session.GetString("Correo");
+            
+            // Buscar al empleado en la base de datos basado en el correo electrónico
+            var usuarioLogeado = await _context.Empleados.FirstOrDefaultAsync(m => m.Correo == correo);
+
+            // Cambiar el estado del usuario a "Offline"
+            usuarioLogeado.Estado = "Offline";
+            
+            // Guardar los cambios en la base de datos
+            await _context.SaveChangesAsync();
+        
+            // Redirigir al usuario 
+            return RedirectToAction("Index", "Home");
+        }
+
 
 
     }
