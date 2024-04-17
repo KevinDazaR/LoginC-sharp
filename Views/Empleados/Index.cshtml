@@ -4,11 +4,11 @@
 
 
 <div class="container">
-    <div class="row">
+    <div class="row d-flex jusitfy-content-around">
 
-        <p>Bienvenido</p>
+        <h3>Bienvenido</h3>
 
-        <div class="col-md-10 text-align-center border p-5">
+        <div class="col-md-5 text-align-center border p-5">
             <form action="">
                 <h2 class="text-center"> <b>Datos del empleado: </b></h2>
                 <div class="form-group">
@@ -37,12 +37,9 @@
             
          
         </div>
-    </div>
 
-
-    <div class="row mt-5">
-        <div class="col-md-12s">
-            <h3 class="text-center">Historial de conexión</h3>
+        <div class="col-md-6">
+            <h4 class="text-right">Historial de conexión</h4>
             <table class="table border table-striped table-hover text-center">
                 <thead class="thead-dark mx-auto">
                     <tr>
@@ -52,11 +49,12 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>@ViewBag.HoraEntrada</td>
-                        <td>@ViewBag.HoraSalida</td>
+                        <td class="border">@ViewBag.HoraEntrada</td>
+                        <td class="border">@ViewBag.HoraSalida</td>
                     </tr>
                 </tbody>
             </table>
+        </div>
     </div>
     
 </div>

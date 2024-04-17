@@ -77,19 +77,42 @@ namespace EmployerSection.Controllers
             await _context.SaveChangesAsync();
             
                 // Actualizar la sesión con la nueva hora de entrada y salida
-            ViewBag.HoraSalida =   usuarioLogeado.Hora_Entrada;
+            ViewBag.HoraEntrada =   usuarioLogeado.Hora_Entrada;
 
 
         // Redirigir a donde sea necesario después de registrar la hora de entrada
         return RedirectToAction("Index"); 
         }
 
-
-
-
-         public async Task<IActionResult> Salida()
+        public async Task<IActionResult> Salida()
         {
             return View();
+        }
+
+
+
+         public async Task<IActionResult> IngresoSalida()
+        {
+            ViewBag.Nombres = HttpContext.Session.GetString("Nombre");
+            ViewBag.HoraEntrada = HttpContext.Session.GetString("HoraSalida"); 
+            // Obtener el correo electrónico del usuario logeado de la sesión
+            var correo = HttpContext.Session.GetString("Correo");
+            
+            // Buscar al empleado en la base de datos basado en el correo electrónico
+            var usuarioLogeado = await _context.Empleados.FirstOrDefaultAsync(m => m.Correo == correo);
+
+            // Actualizar la hora de entrada del empleado
+            usuarioLogeado.Hora_Salida = DateTime.Now;
+            
+            // Guardar los cambios en la base de datos
+            await _context.SaveChangesAsync();
+            
+                // Actualizar la sesión con la nueva hora de entrada y salida
+            ViewBag.HoraSalida =   usuarioLogeado.Hora_Salida;
+
+
+        // Redirigir a donde sea necesario después de registrar la hora de entrada
+            return RedirectToAction("Index"); 
         }
 
         public async Task<IActionResult> EliminarEmpleado(int? id)

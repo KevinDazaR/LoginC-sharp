@@ -9,6 +9,23 @@
     <link rel="stylesheet" href="~/EmployerSection.styles.css" asp-append-version="true" />
 </head>
 <body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3 text-center">
+            <ul class="navbar-nav d-flex justify-content-around">
+                <li class="nav-item d-flex alignt-items-center">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Users" asp-action="Index">Mi perfil</a>
+                    <span>|</span>
+                </li>
+                <li class="nav-item d-flex">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Users" asp-action="Index">Historial de conexiòn</a>
+                    <span>|</span>
+                </li>
+                <li class="text-right">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Products" asp-action="Index">Cerrar sesiòn</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
 
     <div class="container">
         <main role="main" class="pb-3">
