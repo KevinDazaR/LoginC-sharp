@@ -30,6 +30,8 @@ namespace EmployerSection.Controllers
         public IActionResult Index()
         {
             ViewBag.Nombre = HttpContext.Session.GetString("Nombre"); // Variable de session para la vista
+            ViewBag.Apellidos = HttpContext.Session.GetString("Apellidos"); 
+            ViewBag.Correo = HttpContext.Session.GetString("Correo"); 
             return View();
         }
 

@@ -47,6 +47,9 @@ namespace EmployerSection.Controllers
                 // Establecer el valor de una variable de sesión
        
                 HttpContext.Session.SetString("Nombre", usuarioLogeado.Nombres);
+                HttpContext.Session.SetString("Apellidos", usuarioLogeado.Apellidos);
+                HttpContext.Session.SetString("Correo", usuarioLogeado.Correo);
+
 
                 // Obtener el valor de una variable de sesión
                 // var sessionId = HttpContext.Session.GetString("ID");
