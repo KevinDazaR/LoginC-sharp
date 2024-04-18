@@ -7,6 +7,7 @@ namespace EmployerSection.Controllers
 {
     public class EmpleadosController : Controller
     {
+
         public readonly BaseContext _context;
     
         public EmpleadosController(BaseContext context)
@@ -16,14 +17,20 @@ namespace EmployerSection.Controllers
         
         public IActionResult Index()
         {
-            ViewBag.Nombre = HttpContext.Session.GetString("Nombre"); // Variable de session para la vista
-            ViewBag.Apellidos = HttpContext.Session.GetString("Apellidos"); 
-            ViewBag.Correo = HttpContext.Session.GetString("Correo"); 
+            var estadoUser = HttpContext.Session.GetString("Estado");
 
-            ViewBag.HoraEntrada = HttpContext.Session.GetString("HoraEntrada"); 
-            ViewBag.HoraSalida = HttpContext.Session.GetString("HoraSalida"); 
+            if(estadoUser=="Online")
+            {
+                ViewBag.Nombre = HttpContext.Session.GetString("Nombre"); // Variable de session para la vista
+                ViewBag.Apellidos = HttpContext.Session.GetString("Apellidos"); 
+                ViewBag.Correo = HttpContext.Session.GetString("Correo"); 
 
-            ViewBag.Estado = HttpContext.Session.GetString("Estado");
+                ViewBag.HoraEntrada = HttpContext.Session.GetString("HoraEntrada"); 
+                ViewBag.HoraSalida = HttpContext.Session.GetString("HoraSalida"); 
+            }
+
+            ViewBag.estadoUser = HttpContext.Session.GetString("Estado");
+ 
             return View();
         }
 
@@ -130,8 +137,5 @@ namespace EmployerSection.Controllers
             // Redirigir al usuario 
             return RedirectToAction("Index", "Home");
         }
-
-
-
     }
 }

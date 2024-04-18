@@ -38,19 +38,40 @@ namespace EmployerSection.Controllers
         // INICIO DE SESIÓN
 
         [HttpPost]       
-        public async Task<IActionResult> Login(string Correo, string Contraseña)
+        // public async Task<IActionResult> Login(string Correo, string Contraseña)
+        // {
+        //     var usuarioLogeado = await _context.Empleados.FirstOrDefaultAsync(m => m.Correo == Correo && m.Contraseña == Contraseña);
+
+        //     if (usuarioLogeado != null) 
+        //     {
+        //         // Establecer el valor de las variables de sesión
+        //         HttpContext.Session.SetString("Nombre", usuarioLogeado.Nombres);
+        //         HttpContext.Session.SetString("Apellidos", usuarioLogeado.Apellidos);
+        //         HttpContext.Session.SetString("Correo", usuarioLogeado.Correo);
+        //         HttpContext.Session.SetString("HoraEntrada", usuarioLogeado.Hora_Entrada.ToString());
+        //         HttpContext.Session.SetString("HoraSalida", usuarioLogeado.Hora_Salida.ToString());
+        //         HttpContext.Session.SetString("Estado", usuarioLogeado.Estado);
+            
+        //         // Cambiar el estado del usuario a "Online"
+        //         usuarioLogeado.Estado = "Online";
+        //         await _context.SaveChangesAsync();
+
+        //         // Redirigir al usuario
+        //         return RedirectToAction("Index", "Empleados");
+        //     } 
+        //     else
+        //     {
+        //         // Usuario no encontrado, redirigir a la página de inicio de sesión
+        //         return RedirectToAction("Index");
+        //     }
+        // }
+        public IActionResult Login(string Correo, string Contraseña)
         {
-            var usuarioLogeado = await _context.Empleados.FirstOrDefaultAsync(m => m.Correo == Correo && m.Contraseña == Contraseña);
+            var usuarioLogeado =  _context.Empleados.FirstOrDefault(m => m.Correo == Correo && m.Contraseña == Contraseña);
 
-            if(usuarioLogeado != null)
+            if (usuarioLogeado != null) 
             {
-                
-            }
-
-            if ( usuarioLogeado.Estado =="Online" )
-            {
-                // Establecer el valor de una variable de sesión
-       
+                // Establecer el valor de las variables de sesión
                 HttpContext.Session.SetString("Nombre", usuarioLogeado.Nombres);
                 HttpContext.Session.SetString("Apellidos", usuarioLogeado.Apellidos);
                 HttpContext.Session.SetString("Correo", usuarioLogeado.Correo);
@@ -58,23 +79,16 @@ namespace EmployerSection.Controllers
                 HttpContext.Session.SetString("HoraSalida", usuarioLogeado.Hora_Salida.ToString());
                 HttpContext.Session.SetString("Estado", usuarioLogeado.Estado);
             
+                // Cambiar el estado del usuario a "Online"
                 usuarioLogeado.Estado = "Online";
-                await _context.SaveChangesAsync();
+                _context.SaveChanges();
 
-                // Obtener el valor de una variable de sesión
-                // var sessionId = HttpContext.Session.GetString("ID");
-
-                if(usuarioLogeado.Estado == "Online")
-                {
-                    return RedirectToAction("Index", "Empleados");
-                }
-                else 
-                {
-                    return RedirectToAction("Index");
-                }
-            }
+                // Redirigir al usuario
+                return RedirectToAction("Index", "Empleados");
+            } 
             else
             {
+                // Usuario no encontrado, redirigir a la página de inicio de sesión
                 return RedirectToAction("Index");
             }
         }
