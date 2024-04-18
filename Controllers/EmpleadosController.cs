@@ -21,6 +21,7 @@ namespace EmployerSection.Controllers
 
             if(estadoUser=="Online")
             {
+                ViewBag.estadoUser = HttpContext.Session.GetString("Estado");
                 ViewBag.Nombre = HttpContext.Session.GetString("Nombre"); // Variable de session para la vista
                 ViewBag.Apellidos = HttpContext.Session.GetString("Apellidos"); 
                 ViewBag.Correo = HttpContext.Session.GetString("Correo"); 
@@ -121,21 +122,26 @@ namespace EmployerSection.Controllers
              return RedirectToAction("EmpleadosList");
         }
 
-       public async Task<IActionResult> CerrarSession()
+        public async Task<IActionResult> CerrarSession()
         {
+            // Obtener el correo electrónico del usuario desde la sesión
             var correo = HttpContext.Session.GetString("Correo");
-            
-            // Buscar al empleado en la base de datos basado en el correo electrónico
+        
             var usuarioLogeado = await _context.Empleados.FirstOrDefaultAsync(m => m.Correo == correo);
 
-            // Cambiar el estado del usuario a "Offline"
-            usuarioLogeado.Estado = "Offline";
-            
-            // Guardar los cambios en la base de datos
-            await _context.SaveChangesAsync();
-        
+            // Verificar si el usuario está logeado
+            if (usuarioLogeado != null)
+            {
+                // Cambiar el estado del usuario a "Offline"
+                usuarioLogeado.Estado = "Offline";
+                
+                // Guardar los cambios en la base de datos
+                await _context.SaveChangesAsync();
+            }
+
             // Redirigir al usuario 
             return RedirectToAction("Index", "Home");
         }
+
     }
 }
