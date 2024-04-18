@@ -10,5 +10,6 @@ namespace EmployerSection.Data
         {
         }
         public DbSet<Empleado> Empleados { get; set; }
+        public DbSet<HistorialConexionEmpleadoModel> HistorialConexionEmpleado { get; set; }
     }
 }

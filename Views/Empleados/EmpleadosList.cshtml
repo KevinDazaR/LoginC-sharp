@@ -28,7 +28,6 @@
                         <th class="border">Correo</th >
                         <th class="border">Hora_Entrada</th >
                         <th class="border">Hora_Salida</th >
-                        <th class="border">Estado</th >
                         <th class="border">Acción</th>
                     </tr>
                 </thead>
@@ -38,9 +37,8 @@
                         <td class="border">@empleado.Nombres</td>
                         <td class="border">@empleado.Apellidos</td>
                         <td class="border">@empleado.Correo</td>
-                        <td class="border">@empleado.Hora_Entrada</td>
-                        <td class="border">@empleado.Hora_Salida</td>
-                        <td class="border">@empleado.Estado</td>
+                        <td class="border">@empleado.Ultima_Hora_Entrada</td>
+                        <td class="border">@empleado.Ultima_Hora_Salida</td>
                         <td class="border">
                             <a class="btn btn-danger" asp-controller="Empleados" asp-action="EliminarEmpleado" asp-route-id="@empleado.Id">Eliminar</a>
                         </td>

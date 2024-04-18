@@ -17,21 +17,17 @@ namespace EmployerSection.Controllers
         
         public IActionResult Index()
         {
-            var estadoUser = HttpContext.Session.GetString("Estado");
+            ViewBag.Nombre = HttpContext.Session.GetString("Nombre"); // Variable de session para la vista
+            ViewBag.Apellidos = HttpContext.Session.GetString("Apellidos"); 
+            ViewBag.Correo = HttpContext.Session.GetString("Correo"); 
 
-            if(estadoUser=="Online")
-            {
-                ViewBag.estadoUser = HttpContext.Session.GetString("Estado");
-                ViewBag.Nombre = HttpContext.Session.GetString("Nombre"); // Variable de session para la vista
-                ViewBag.Apellidos = HttpContext.Session.GetString("Apellidos"); 
-                ViewBag.Correo = HttpContext.Session.GetString("Correo"); 
-
-                ViewBag.HoraEntrada = HttpContext.Session.GetString("HoraEntrada"); 
-                ViewBag.HoraSalida = HttpContext.Session.GetString("HoraSalida"); 
-            }
-
-            ViewBag.estadoUser = HttpContext.Session.GetString("Estado");
+            ViewBag.Ultima_Hora_Entrada = HttpContext.Session.GetString("Ultima_Hora_Entrada"); 
+            ViewBag.Ultima_Hora_Salida = HttpContext.Session.GetString("Ultima_Hora_Salida"); 
+            
+            ViewBag.Hora_Entrada = HttpContext.Session.GetString("Hora_Entrada"); 
+            ViewBag.Hora_Salida = HttpContext.Session.GetString("Hora_Salida"); 
  
+            
             return View();
         }
 
@@ -52,7 +48,7 @@ namespace EmployerSection.Controllers
         public async Task<IActionResult> IngresoHora()
         {
 
-            ViewBag.HoraEntrada = HttpContext.Session.GetString("HoraEntrada"); 
+            ViewBag.Ultima_Hora_Entrada = HttpContext.Session.GetString("Ultima_Hora_Entrada"); 
             // Obtener el correo electrónico del usuario logeado de la sesión
             var correo = HttpContext.Session.GetString("Correo");
             
@@ -60,13 +56,13 @@ namespace EmployerSection.Controllers
             var usuarioLogeado = await _context.Empleados.FirstOrDefaultAsync(m => m.Correo == correo);
 
             // Actualizar la hora de entrada del empleado
-            usuarioLogeado.Hora_Entrada = DateTime.Now;
+            usuarioLogeado.Ultima_Hora_Entrada = DateTime.Now;
             
             // Guardar los cambios en la base de datos
             await _context.SaveChangesAsync();
             
                 // Actualizar la sesión con la nueva hora de entrada y salida
-            ViewBag.HoraEntrada =   usuarioLogeado.Hora_Entrada;
+            ViewBag.Ultima_Hora_Entrada =   usuarioLogeado.Ultima_Hora_Entrada;
 
 
         // Redirigir a donde sea necesario después de registrar la hora de entrada
@@ -83,7 +79,7 @@ namespace EmployerSection.Controllers
          public async Task<IActionResult> IngresoSalida()
         {
             ViewBag.Nombres = HttpContext.Session.GetString("Nombre");
-            ViewBag.HoraEntrada = HttpContext.Session.GetString("HoraSalida"); 
+            ViewBag.Ultima_Hora_Salida = HttpContext.Session.GetString("Ultima_Hora_Salida"); 
             // Obtener el correo electrónico del usuario logeado de la sesión
             var correo = HttpContext.Session.GetString("Correo");
             
@@ -91,13 +87,13 @@ namespace EmployerSection.Controllers
             var usuarioLogeado = await _context.Empleados.FirstOrDefaultAsync(m => m.Correo == correo);
 
             // Actualizar la hora de entrada del empleado
-            usuarioLogeado.Hora_Salida = DateTime.Now;
+            usuarioLogeado.Ultima_Hora_Salida = DateTime.Now;
             
             // Guardar los cambios en la base de datos
             await _context.SaveChangesAsync();
             
                 // Actualizar la sesión con la nueva hora de entrada y salida
-            ViewBag.HoraSalida =   usuarioLogeado.Hora_Salida;
+            ViewBag.Ultima_Hora_Salida =   usuarioLogeado.Ultima_Hora_Salida;
 
 
         // Redirigir a donde sea necesario después de registrar la hora de entrada
@@ -122,23 +118,9 @@ namespace EmployerSection.Controllers
              return RedirectToAction("EmpleadosList");
         }
 
+        // CERRA SESSION NO FUNCIONAL DEL TODO
         public async Task<IActionResult> CerrarSession()
         {
-            // Obtener el correo electrónico del usuario desde la sesión
-            var correo = HttpContext.Session.GetString("Correo");
-        
-            var usuarioLogeado = await _context.Empleados.FirstOrDefaultAsync(m => m.Correo == correo);
-
-            // Verificar si el usuario está logeado
-            if (usuarioLogeado != null)
-            {
-                // Cambiar el estado del usuario a "Offline"
-                usuarioLogeado.Estado = "Offline";
-                
-                // Guardar los cambios en la base de datos
-                await _context.SaveChangesAsync();
-            }
-
             // Redirigir al usuario 
             return RedirectToAction("Index", "Home");
         }

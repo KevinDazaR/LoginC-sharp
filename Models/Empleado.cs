@@ -9,10 +9,9 @@ namespace EmployerSection.Models
 
         public string ? Contraseña { get; set; }
 
-        public DateTime ? Hora_Entrada { get; set; }
+        public DateTime ? Ultima_Hora_Entrada { get; set; }
 
-        public DateTime ? Hora_Salida { get; set; }
-        public string ? Estado { get; set; }
+        public DateTime ? Ultima_Hora_Salida { get; set; }
 
     }
 }
