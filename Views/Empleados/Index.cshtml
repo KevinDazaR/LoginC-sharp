@@ -22,6 +22,8 @@
 
         <div class="col-md-5 text-align-center border p-5">
             <form action="">
+                <p>@ViewBag.Id a</p>
+                <p>@ViewBag.Id_Empleado a</p>
                 <h2 class="text-center"> <b>Datos del empleado: </b></h2>
                 <div class="form-group">
                     <label for="Nombres">Nombres</label>
@@ -59,12 +61,15 @@
                         <th class="border">Registro de Salida</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td class="border">@ViewBag.Hora_Entrada</td>
-                        <td class="border">@ViewBag.Hora_Salida</td>
-                    </tr>
-                </tbody>
+                @foreach(var conexion in Model)
+                {
+                    <tbody>
+                        <tr>
+                            <td class="border">@conexion.Hora_Entrada</td>
+                            <td class="border">@conexion.Hora_Salida</td>
+                        </tr>
+                    </tbody>
+                }
             </table>
         </div>
     </div>

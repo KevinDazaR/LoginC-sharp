@@ -15,8 +15,13 @@ namespace EmployerSection.Controllers
             _context = context;
         }
         
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+
+            var conexion = await _context.HistorialConexionEmpleado.ToListAsync();
+
+
+            ViewBag.Id = HttpContext.Session.GetString("Id"); // Variable de session para la vista
             ViewBag.Nombre = HttpContext.Session.GetString("Nombre"); // Variable de session para la vista
             ViewBag.Apellidos = HttpContext.Session.GetString("Apellidos"); 
             ViewBag.Correo = HttpContext.Session.GetString("Correo"); 
@@ -24,11 +29,14 @@ namespace EmployerSection.Controllers
             ViewBag.Ultima_Hora_Entrada = HttpContext.Session.GetString("Ultima_Hora_Entrada"); 
             ViewBag.Ultima_Hora_Salida = HttpContext.Session.GetString("Ultima_Hora_Salida"); 
             
+            // BD DE HISTORIAL
+             ViewBag.Id_Empleado = HttpContext.Session.GetString("Id_Empleado");
             ViewBag.Hora_Entrada = HttpContext.Session.GetString("Hora_Entrada"); 
             ViewBag.Hora_Salida = HttpContext.Session.GetString("Hora_Salida"); 
+
  
             
-            return View();
+            return View(conexion);
         }
 
 
@@ -49,6 +57,7 @@ namespace EmployerSection.Controllers
         {
 
             ViewBag.Ultima_Hora_Entrada = HttpContext.Session.GetString("Ultima_Hora_Entrada"); 
+
             // Obtener el correo electrónico del usuario logeado de la sesión
             var correo = HttpContext.Session.GetString("Correo");
             
@@ -57,17 +66,36 @@ namespace EmployerSection.Controllers
 
             // Actualizar la hora de entrada del empleado
             usuarioLogeado.Ultima_Hora_Entrada = DateTime.Now;
-            
+
+            // Actualizar la sesión con la nueva hora de entrada y salida
+            ViewBag.Ultima_Hora_Entrada =   usuarioLogeado.Ultima_Hora_Entrada;
             // Guardar los cambios en la base de datos
             await _context.SaveChangesAsync();
+
+            var historialConexionEmpleado = await _context.HistorialConexionEmpleado
+                    .FirstOrDefaultAsync(h => h.Id_Empleado == usuarioLogeado.Id);
             
-                // Actualizar la sesión con la nueva hora de entrada y salida
-            ViewBag.Ultima_Hora_Entrada =   usuarioLogeado.Ultima_Hora_Entrada;
+            if(historialConexionEmpleado != null)
+            {
+                ViewBag.Hora_Entrada = HttpContext.Session.GetString("Hora_Entrada");
 
+                var nuevaConexionEntrada = new HistorialConexionEmpleadoModel
+                {
+                    Id_Empleado = usuarioLogeado.Id,
+                    Hora_Entrada = usuarioLogeado.Ultima_Hora_Entrada
+                };
 
-        // Redirigir a donde sea necesario después de registrar la hora de entrada
+                _context.HistorialConexionEmpleado.Add(nuevaConexionEntrada);
+
+                ViewBag.Hora_Entrada = historialConexionEmpleado.Hora_Entrada;
+                await _context.SaveChangesAsync();
+
+            }
+
         return RedirectToAction("Index"); 
         }
+
+
 
         public async Task<IActionResult> Salida()
         {

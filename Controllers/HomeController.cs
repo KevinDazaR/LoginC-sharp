@@ -45,22 +45,40 @@ namespace EmployerSection.Controllers
             if (usuarioLogeado != null)
             {
                 // Establecer el valor de las variables de sesión para el usuario logeado
+
+                HttpContext.Session.SetString("Id", usuarioLogeado.Id.ToString());
                 HttpContext.Session.SetString("Nombre", usuarioLogeado.Nombres);
                 HttpContext.Session.SetString("Apellidos", usuarioLogeado.Apellidos);
                 HttpContext.Session.SetString("Correo", usuarioLogeado.Correo);
                 HttpContext.Session.SetString("Ultima_Hora_Entrada", usuarioLogeado.Ultima_Hora_Entrada.ToString());
                 HttpContext.Session.SetString("Ultima_Hora_Salida", usuarioLogeado.Ultima_Hora_Salida.ToString());
 
-                // Obtener el historial de conexión del usuario logeado
-                var historialConexionEmpleado = await _context.HistorialConexionEmpleado
-                    .FirstOrDefaultAsync(h => h.Id_Empleado == usuarioLogeado.Id);
+                
+                var nuevaConexionEntrada = new HistorialConexionEmpleadoModel
+                {
+                    Id_Empleado = usuarioLogeado.Id,
+                    Hora_Entrada = usuarioLogeado.Ultima_Hora_Entrada,
+                    Hora_Salida = usuarioLogeado.Ultima_Hora_Salida
+                };
 
+                _context.HistorialConexionEmpleado.Add(nuevaConexionEntrada);
+                await _context.SaveChangesAsync();
+                // Obtener el historial de conexión del usuario logeado
+                var historialConexionEmpleado = await _context.HistorialConexionEmpleado.FirstOrDefaultAsync(h => h.Id_Empleado == usuarioLogeado.Id);
+                
                 if (historialConexionEmpleado != null)
                 {
                     // Establecer las variables de sesión para la última hora de entrada y salida del usuario logeado
+                    HttpContext.Session.SetString("Id_Empleado", historialConexionEmpleado.Id.ToString());
                     HttpContext.Session.SetString("Hora_Entrada", historialConexionEmpleado.Hora_Entrada.ToString());
                     HttpContext.Session.SetString("Hora_Salida", historialConexionEmpleado.Hora_Salida.ToString());
+
+                    historialConexionEmpleado.Id_Empleado = usuarioLogeado.Id;
+                    historialConexionEmpleado.Hora_Entrada = usuarioLogeado.Ultima_Hora_Entrada;
+                    historialConexionEmpleado.Hora_Salida= usuarioLogeado.Ultima_Hora_Salida;
+                    await _context.SaveChangesAsync();
                 }
+
 
                 // Guardar los cambios en la base de datos
                 await _context.SaveChangesAsync();
