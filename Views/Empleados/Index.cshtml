@@ -1,91 +1,91 @@
-@{
-    ViewData["Title"] = "Logged";
-    ViewBag.Id.ToString();
-}
+    @{
+        ViewData["Title"] = "Logged";
+        ViewBag.Id.ToString();
+    }
 
 
 
-<header>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3 text-center justify-content-around">
-        <a class="nav-link text-info font-weight-bold" asp-area="" asp-controller="Empleados" asp-action="Index">Mi perfil</a>
-        <span>|</span>
-        <a class="nav-link text-warning" asp-area="" asp-controller="Empleados" asp-action="EmpleadosList">Historial de conexiòn</a>
-        <span>|</span>
-        <a class="nav-link text-danger" asp-area="" asp-controller="Empleados" asp-action="CerrarSession">Cerrar sesiòn</a>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3 text-center justify-content-around">
+            <a class="nav-link text-info font-weight-bold" asp-area="" asp-controller="Empleados" asp-action="Index">Mi perfil</a>
+            <span>|</span>
+            <a class="nav-link text-warning" asp-area="" asp-controller="Empleados" asp-action="EmpleadosList">Historial de conexiòn</a>
+            <span>|</span>
+            <a class="nav-link text-danger" asp-area="" asp-controller="Empleados" asp-action="CerrarSession">Cerrar sesiòn</a>
 
-    </nav>
-</header>
+        </nav>
+    </header>
 
+    <div class="container">
+        <div class="row d-flex jusitfy-content-around">
 
+            <h3>Bienvenido</h3>
 
-<div class="container">
-    <div class="row d-flex jusitfy-content-around">
+            <div class="col-md-5 text-align-center border p-5">
+                <form action="">
+                    @* Para verificar si los Id son iguales *@
+                    @* <p>@ViewBag.Id a</p>
+                    <p>@ViewBag.Id_Empleado a</p> *@
+                    <h2 class="text-center"> <b>Datos del empleado: </b></h2>
+                    <div class="form-group">
+                        <label for="Nombres">Nombres</label>
+                        <input disabled type="text" class="form-control" value="@ViewBag.Nombre" >
+                        </div>
 
-        <h3>Bienvenido</h3>
-
-        <div class="col-md-5 text-align-center border p-5">
-            <form action="">
-                @* Para verificar si los Id son iguales *@
-                @* <p>@ViewBag.Id a</p>
-                <p>@ViewBag.Id_Empleado a</p> *@
-                <h2 class="text-center"> <b>Datos del empleado: </b></h2>
-                <div class="form-group">
-                    <label for="Nombres">Nombres</label>
-                    <input disabled type="text" class="form-control" value="@ViewBag.Nombre" >
+                    <div class="form-group">
+                        <label for="Apellidos">Apellidos</label>
+                        <input disabled type="text" class="form-control" value="@ViewBag.Apellidos">
                     </div>
 
-                <div class="form-group">
-                    <label for="Apellidos">Apellidos</label>
-                    <input disabled type="text" class="form-control" value="@ViewBag.Apellidos">
-                </div>
+                    <div class="form-group">
+                        <label for="Correo">Correo electronico</label>
+                        <input disabled type="email" class="form-control" value="@ViewBag.Correo">
+                    </div>
 
-                <div class="form-group">
-                    <label for="Correo">Correo electronico</label>
-                    <input disabled type="email" class="form-control" value="@ViewBag.Correo">
-                </div>
+                    <hr>
+                    <div class="row">
+                        @if (string.IsNullOrEmpty(ViewBag.Hora_Entrada))
+                        {
+                            <a class="mb-2 btn btn-info" asp-controller="Empleados" asp-action="Ingreso">Registrar ingreso</a>
+                        }
+                            <a class=" btn btn-warning" asp-controller="Empleados" asp-action="Salida">Registrar salida</a>
 
-                <hr>
-                <div class="row">
-                    <a class="mb-2 btn btn-info" asp-controller="Empleados" asp-action="Ingreso">Registrar ingreso</a>
-                    <br>
-                    <a class=" btn btn-warning" asp-controller="Empleados" asp-action="Salida">Registrar salida</a>
-
-                </div>
-            </form>
+                    </div>
+                </form>
 
 
-        </div>
+            </div>
 
-        <div class="col-md-6">
-            <h4 class="text-right">Historial de conexión</h4>
-            <table class="table border table-striped table-hover text-center">
-                <thead class="thead-dark mx-auto">
-                    <tr>
-                        <th class=border>Id Empleado </th>
-                        <th class="border">Registro de Entrada</th>
-                        <th class="border">Registro de Salida</th>
-                    </tr>
-                </thead>
-               @foreach (var conexion in Model)
-                {
-                    // Comprueba si el Id_Empleado de la conexión coincide con el Id del empleado actual
-                    if (conexion.Id_Empleado.ToString() == ViewBag.Id)
+            <div class="col-md-6">
+                <h4 class="text-right">Historial de conexión</h4>
+                <table class="table border table-striped table-hover text-center">
+                    <thead class="thead-dark mx-auto">
+                        <tr>
+                            <th class=border># Conexiòn </th>
+                            <th class="border">Registro de Entrada</th>
+                            <th class="border">Registro de Salida</th>
+                        </tr>
+                    </thead>
+                @foreach (var conexion in Model)
                     {
-                        <tbody>
-                            <tr>
-                                <td> @conexion.Id_Empleado</td>
-                                <td class="border">@conexion.Hora_Entrada</td>
-                                <td class="border">@conexion.Hora_Salida</td>
-                            </tr>
-                        </tbody>
-                    }
-                }                
-            </table>
+                        // Comprueba si el Id_Empleado de la conexión coincide con el Id del empleado actual
+                        if (conexion.Id_Empleado.ToString() == ViewBag.Id)
+                        {
+                            <tbody>
+                                <tr>
+                                    <td> @conexion.Id</td>
+                                    <td class="border">@conexion.Hora_Entrada</td>
+                                    <td class="border">@conexion.Hora_Salida</td>
+                                </tr>
+                            </tbody>
+                        }
+                    }                
+                </table>
+            </div>
         </div>
+
     </div>
 
-</div>
-
-@*
-<table class="table">
-  <thead class="thead-dark"> *@
+    @*
+    <table class="table">
+    <thead class="thead-dark"> *@

@@ -105,7 +105,8 @@ namespace EmployerSection.Controllers
 
 
 
-         public async Task<IActionResult> IngresoSalida()
+        
+        public async Task<IActionResult> IngresoSalida()
         {
             ViewBag.Nombres = HttpContext.Session.GetString("Nombre");
             ViewBag.Ultima_Hora_Salida = HttpContext.Session.GetString("Ultima_Hora_Salida"); 
@@ -115,39 +116,42 @@ namespace EmployerSection.Controllers
             // Buscar al empleado en la base de datos basado en el correo electrónico
             var usuarioLogeado = await _context.Empleados.FirstOrDefaultAsync(m => m.Correo == correo);
 
-            // Actualizar la hora de entrada del empleado
+            // Actualizar la hora de salida del empleado
             usuarioLogeado.Ultima_Hora_Salida = DateTime.Now;
             
-            ViewBag.Ultima_Hora_Entrada =   usuarioLogeado.Ultima_Hora_Entrada;
+            ViewBag.Ultima_Hora_Salida = usuarioLogeado.Ultima_Hora_Salida;
             // Guardar los cambios en la base de datos
             await _context.SaveChangesAsync();
             
-            var historialConexionEmpleado = await _context.HistorialConexionEmpleado.FirstOrDefaultAsync(h => h.Id_Empleado == usuarioLogeado.Id);
+            // Obtener el último historial de conexión del empleado
+            var ultimoHistorialConexion = await _context.HistorialConexionEmpleado
+                .OrderByDescending(h => h.Hora_Entrada)
+                .FirstOrDefaultAsync(h => h.Id_Empleado == usuarioLogeado.Id);
             
-            if(historialConexionEmpleado != null)
+            if(ultimoHistorialConexion == null)
             {
-                ViewBag.Hora_Salida = HttpContext.Session.GetString("Hora_Salida");
-
+                // Si no hay historial de conexión previo, crea uno nuevo
                 var nuevaConexionSalida = new HistorialConexionEmpleadoModel
                 {
                     Id_Empleado = usuarioLogeado.Id,
+                    Hora_Entrada = usuarioLogeado.Ultima_Hora_Entrada,
                     Hora_Salida = usuarioLogeado.Ultima_Hora_Salida
                 };
-
                 _context.HistorialConexionEmpleado.Add(nuevaConexionSalida);
+                }
+                else
+                {
+                    // Si ya existe historial de conexión, actualiza la hora de salida
+                    ultimoHistorialConexion.Hora_Salida = usuarioLogeado.Ultima_Hora_Salida;
+                }
 
-                ViewBag.Hora_Salida = historialConexionEmpleado.Hora_Salida;
+                // Guardar los cambios en la base de datos
                 await _context.SaveChangesAsync();
 
-            }
-
-                // Actualizar la sesión con la nueva hora de Salida y salida
-            ViewBag.Ultima_Hora_Salida =   usuarioLogeado.Ultima_Hora_Salida;
-
-
-        // Redirigir a donde sea necesario después de registrar la hora de entrada
-            return RedirectToAction("Index"); 
+                // Redirigir a donde sea necesario después de registrar la hora de salida
+                return RedirectToAction("Index"); 
         }
+
 
         public async Task<IActionResult> EliminarEmpleado(int? id)
         {
@@ -155,7 +159,7 @@ namespace EmployerSection.Controllers
             _context.Empleados.Remove(empleado); 
             await _context.SaveChangesAsync(); 
             return RedirectToAction("EmpleadosList"); 
-        }
+        }   
 
         public IActionResult Create(){
             return View();
