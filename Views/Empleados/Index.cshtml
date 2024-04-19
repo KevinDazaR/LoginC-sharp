@@ -1,6 +1,9 @@
 @{
     ViewData["Title"] = "Logged";
+    ViewBag.Id.ToString();
 }
+
+
 
 <header>
     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3 text-center justify-content-around">
@@ -9,7 +12,7 @@
         <a class="nav-link text-warning" asp-area="" asp-controller="Empleados" asp-action="EmpleadosList">Historial de conexiòn</a>
         <span>|</span>
         <a class="nav-link text-danger" asp-area="" asp-controller="Empleados" asp-action="CerrarSession">Cerrar sesiòn</a>
-            
+
     </nav>
 </header>
 
@@ -22,12 +25,13 @@
 
         <div class="col-md-5 text-align-center border p-5">
             <form action="">
-                <p>@ViewBag.Id a</p>
-                <p>@ViewBag.Id_Empleado a</p>
+                @* Para verificar si los Id son iguales *@
+                @* <p>@ViewBag.Id a</p>
+                <p>@ViewBag.Id_Empleado a</p> *@
                 <h2 class="text-center"> <b>Datos del empleado: </b></h2>
                 <div class="form-group">
                     <label for="Nombres">Nombres</label>
-                    <input disabled type="text" class="form-control" value="@ViewBag.Nombre" > 
+                    <input disabled type="text" class="form-control" value="@ViewBag.Nombre" >
                     </div>
 
                 <div class="form-group">
@@ -48,8 +52,8 @@
 
                 </div>
             </form>
-            
-         
+
+
         </div>
 
         <div class="col-md-6">
@@ -57,25 +61,31 @@
             <table class="table border table-striped table-hover text-center">
                 <thead class="thead-dark mx-auto">
                     <tr>
+                        <th class=border>Id Empleado </th>
                         <th class="border">Registro de Entrada</th>
                         <th class="border">Registro de Salida</th>
                     </tr>
                 </thead>
-                @foreach(var conexion in Model)
+               @foreach (var conexion in Model)
                 {
-                    <tbody>
-                        <tr>
-                            <td class="border">@conexion.Hora_Entrada</td>
-                            <td class="border">@conexion.Hora_Salida</td>
-                        </tr>
-                    </tbody>
-                }
+                    // Comprueba si el Id_Empleado de la conexión coincide con el Id del empleado actual
+                    if (conexion.Id_Empleado.ToString() == ViewBag.Id)
+                    {
+                        <tbody>
+                            <tr>
+                                <td> @conexion.Id_Empleado</td>
+                                <td class="border">@conexion.Hora_Entrada</td>
+                                <td class="border">@conexion.Hora_Salida</td>
+                            </tr>
+                        </tbody>
+                    }
+                }                
             </table>
         </div>
     </div>
-    
+
 </div>
 
-@* 
+@*
 <table class="table">
   <thead class="thead-dark"> *@

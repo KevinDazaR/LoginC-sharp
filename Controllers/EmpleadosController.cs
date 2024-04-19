@@ -34,6 +34,8 @@ namespace EmployerSection.Controllers
             ViewBag.Hora_Entrada = HttpContext.Session.GetString("Hora_Entrada"); 
             ViewBag.Hora_Salida = HttpContext.Session.GetString("Hora_Salida"); 
 
+            // Igualo Id a Id_Empleado
+            
  
             
             return View(conexion);

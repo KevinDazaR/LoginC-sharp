@@ -69,7 +69,7 @@ namespace EmployerSection.Controllers
                 if (historialConexionEmpleado != null)
                 {
                     // Establecer las variables de sesión para la última hora de entrada y salida del usuario logeado
-                    HttpContext.Session.SetString("Id_Empleado", historialConexionEmpleado.Id.ToString());
+                    HttpContext.Session.SetString("Id_Empleado", historialConexionEmpleado.Id_Empleado.ToString());
                     HttpContext.Session.SetString("Hora_Entrada", historialConexionEmpleado.Hora_Entrada.ToString());
                     HttpContext.Session.SetString("Hora_Salida", historialConexionEmpleado.Hora_Salida.ToString());
 
