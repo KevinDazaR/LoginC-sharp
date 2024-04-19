@@ -72,15 +72,14 @@ namespace EmployerSection.Controllers
             // Guardar los cambios en la base de datos
             await _context.SaveChangesAsync();
 
-            var historialConexionEmpleado = await _context.HistorialConexionEmpleado
-                    .FirstOrDefaultAsync(h => h.Id_Empleado == usuarioLogeado.Id);
+            var historialConexionEmpleado = await _context.HistorialConexionEmpleado.FirstOrDefaultAsync(h => h.Id_Empleado == usuarioLogeado.Id);
             
             if(historialConexionEmpleado != null)
             {
                 ViewBag.Hora_Entrada = HttpContext.Session.GetString("Hora_Entrada");
 
                 var nuevaConexionEntrada = new HistorialConexionEmpleadoModel
-                {
+                 {
                     Id_Empleado = usuarioLogeado.Id,
                     Hora_Entrada = usuarioLogeado.Ultima_Hora_Entrada
                 };
@@ -117,10 +116,30 @@ namespace EmployerSection.Controllers
             // Actualizar la hora de entrada del empleado
             usuarioLogeado.Ultima_Hora_Salida = DateTime.Now;
             
+            ViewBag.Ultima_Hora_Entrada =   usuarioLogeado.Ultima_Hora_Entrada;
             // Guardar los cambios en la base de datos
             await _context.SaveChangesAsync();
             
-                // Actualizar la sesión con la nueva hora de entrada y salida
+            var historialConexionEmpleado = await _context.HistorialConexionEmpleado.FirstOrDefaultAsync(h => h.Id_Empleado == usuarioLogeado.Id);
+            
+            if(historialConexionEmpleado != null)
+            {
+                ViewBag.Hora_Salida = HttpContext.Session.GetString("Hora_Salida");
+
+                var nuevaConexionSalida = new HistorialConexionEmpleadoModel
+                {
+                    Id_Empleado = usuarioLogeado.Id,
+                    Hora_Salida = usuarioLogeado.Ultima_Hora_Salida
+                };
+
+                _context.HistorialConexionEmpleado.Add(nuevaConexionSalida);
+
+                ViewBag.Hora_Salida = historialConexionEmpleado.Hora_Salida;
+                await _context.SaveChangesAsync();
+
+            }
+
+                // Actualizar la sesión con la nueva hora de Salida y salida
             ViewBag.Ultima_Hora_Salida =   usuarioLogeado.Ultima_Hora_Salida;
 
 
