@@ -18,46 +18,75 @@ namespace EmployerSection.Controllers
         public async Task<IActionResult> Index()
         {
 
-            var conexion = await _context.HistorialConexionEmpleado.ToListAsync();
-
-
-            ViewBag.Id = HttpContext.Session.GetString("Id"); // Variable de session para la vista
-            ViewBag.Nombre = HttpContext.Session.GetString("Nombre"); // Variable de session para la vista
-            ViewBag.Apellidos = HttpContext.Session.GetString("Apellidos"); 
-            ViewBag.Correo = HttpContext.Session.GetString("Correo"); 
-
-            ViewBag.Ultima_Hora_Entrada = HttpContext.Session.GetString("Ultima_Hora_Entrada"); 
-            ViewBag.Ultima_Hora_Salida = HttpContext.Session.GetString("Ultima_Hora_Salida"); 
+            var IdEmpleado = HttpContext.Session.GetString("Id");
             
-            // BD DE HISTORIAL
-             ViewBag.Id_Empleado = HttpContext.Session.GetString("Id_Empleado");
-            ViewBag.Hora_Entrada = HttpContext.Session.GetString("Hora_Entrada"); 
-            ViewBag.Hora_Salida = HttpContext.Session.GetString("Hora_Salida"); 
+            if(IdEmpleado != null){
 
-            // Igualo Id a Id_Empleado
-            
- 
-            
-            return View(conexion);
+                var conexion = await _context.HistorialConexionEmpleado.ToListAsync();
+
+
+                ViewBag.Id = HttpContext.Session.GetString("Id"); // Variable de session para la vista
+                ViewBag.Nombre = HttpContext.Session.GetString("Nombre"); // Variable de session para la vista
+                ViewBag.Apellidos = HttpContext.Session.GetString("Apellidos"); 
+                ViewBag.Correo = HttpContext.Session.GetString("Correo"); 
+
+                ViewBag.Ultima_Hora_Entrada = HttpContext.Session.GetString("Ultima_Hora_Entrada"); 
+                ViewBag.Ultima_Hora_Salida = HttpContext.Session.GetString("Ultima_Hora_Salida"); 
+                
+                // BD DE HISTORIAL
+                ViewBag.Id_Empleado = HttpContext.Session.GetString("Id_Empleado");
+                ViewBag.Hora_Entrada = HttpContext.Session.GetString("Hora_Entrada"); 
+                ViewBag.Hora_Salida = HttpContext.Session.GetString("Hora_Salida"); 
+
+                // Igualo Id a Id_Empleado
+                
+    
+                
+                return View(conexion);
+            }
+            else{
+                return RedirectToAction("Index", "Home");
+            }
+
         }
 
 
         public async Task<IActionResult> EmpleadosList()
         {
-            var empleados = await _context.Empleados.ToListAsync();
-            return View(empleados);
+            var IdEmpleado = HttpContext.Session.GetString("Id");
+            
+            if(IdEmpleado != null){
+                var empleados = await _context.Empleados.ToListAsync();
+                return View(empleados);
+            }
+            else{
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         // SISTEMA DE INGRESO DE JORNADA LABORAL
 
          public async Task<IActionResult> Ingreso()
         {
-            return View();
+            var IdEmpleado = HttpContext.Session.GetString("Id");
+            
+            if(IdEmpleado != null){
+                return View();
+            }
+            else{
+                return RedirectToAction("Index", "Home");
+            }
+
         }
 
         public async Task<IActionResult> IngresoHora()
         {
-
+             var IdEmpleado = HttpContext.Session.GetString("Id");
+            
+            if(IdEmpleado != null){
+            
+            } 
+            var Hora_Ingreso_Local = 
             ViewBag.Ultima_Hora_Entrada = HttpContext.Session.GetString("Ultima_Hora_Entrada"); 
 
             // Obtener el correo electrónico del usuario logeado de la sesión
@@ -174,6 +203,9 @@ namespace EmployerSection.Controllers
         // CERRA SESSION NO FUNCIONAL DEL TODO
         public async Task<IActionResult> CerrarSession()
         {
+            //Limpiar la sesiòn
+            HttpContext.Session.Remove("Nombres");
+            HttpContext.Session.Remove("Id");
             // Redirigir al usuario 
             return RedirectToAction("Index", "Home");
         }
